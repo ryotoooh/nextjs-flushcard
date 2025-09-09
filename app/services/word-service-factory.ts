@@ -1,7 +1,7 @@
 import { WordService } from '../types/word';
-import { JsonWordService } from './implementations/jsonWordService';
-import { DatabaseWordService } from './implementations/databaseWordService';
-import { GoogleSheetsWordService } from './implementations/GoogleSheetsWordService';
+import { JsonWordService } from './implementations/json-word-service';
+import { DatabaseWordService } from './implementations/database-word-service';
+import { GoogleSheetsWordService } from './implementations/google-sheets-word-service';
 
 // Factory function to create WordService instance
 export function createWordService(): WordService {

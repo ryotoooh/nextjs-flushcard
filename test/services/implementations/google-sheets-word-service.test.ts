@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { GoogleSheetsWordService } from '../../../app/services/implementations/GoogleSheetsWordService'
-import { createWordService } from '../../../app/services/wordServiceFactory'
+import { GoogleSheetsWordService } from '../../../app/services/implementations/google-sheets-word-service'
+import { createWordService } from '../../../app/services/word-service-factory'
 import { WordData } from '../../../app/types/word'
 
 // Mock googleapis
@@ -295,14 +295,14 @@ describe('createWordService factory function', () => {
 
   it('should create JsonWordService when DATA_SOURCE is json', async () => {
     process.env.DATA_SOURCE = 'json'
-    const { JsonWordService } = await import('../../../app/services/implementations/jsonWordService')
+    const { JsonWordService } = await import('../../../app/services/implementations/json-word-service')
     const service = createWordService()
     expect(service).toBeInstanceOf(JsonWordService)
   })
 
   it('should create DatabaseWordService when DATA_SOURCE is database', async () => {
     process.env.DATA_SOURCE = 'database'
-    const { DatabaseWordService } = await import('../../../app/services/implementations/databaseWordService')
+    const { DatabaseWordService } = await import('../../../app/services/implementations/database-word-service')
     const service = createWordService()
     expect(service).toBeInstanceOf(DatabaseWordService)
   })

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createWordService } from '../../services/wordServiceFactory'
+import { createWordService } from '../../services/word-service-factory'
 
 export async function GET(request: NextRequest) {
   try {

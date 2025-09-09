@@ -46,7 +46,7 @@ The app uses a service-based architecture with dependency inversion:
 - Factory pattern for service creation
 
 ```typescript
-import { createWordService } from './services/wordServiceFactory';
+import { createWordService } from './services/word-service-factory';
 const wordService = createWordService();
 const words = await wordService.getAllWords();
 ```
