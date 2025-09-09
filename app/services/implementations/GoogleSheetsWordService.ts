@@ -1,7 +1,5 @@
 import { google } from 'googleapis';
 import { WordData, WordService } from '../../types/word';
-import { JsonWordService } from './jsonWordService';
-import { DatabaseWordService } from './databaseWordService';
 
 // Google Sheets implementation of WordService
 export class GoogleSheetsWordService implements WordService {
@@ -75,20 +73,5 @@ export class GoogleSheetsWordService implements WordService {
   async getWordById(id: string): Promise<WordData | null> {
     const allWords = await this.getAllWords();
     return allWords.find(word => word.word === id) || null;
-  }
-}
-
-// Factory function to create WordService instance
-export function createWordService(): WordService {
-  const dataSource = process.env.DATA_SOURCE || 'google-sheets';
-  
-  switch (dataSource) {
-    case 'json':
-      return new JsonWordService();
-    case 'database':
-      return new DatabaseWordService();
-    case 'google-sheets':
-    default:
-      return new GoogleSheetsWordService();
   }
 }

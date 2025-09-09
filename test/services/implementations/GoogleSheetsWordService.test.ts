@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { GoogleSheetsWordService, createWordService } from '../../../app/services/implementations/GoogleSheetsWordService'
+import { GoogleSheetsWordService } from '../../../app/services/implementations/GoogleSheetsWordService'
+import { createWordService } from '../../../app/services/wordServiceFactory'
 import { WordData } from '../../../app/types/word'
 
 // Mock googleapis

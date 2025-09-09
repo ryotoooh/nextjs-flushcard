@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createWordService } from '../../services/implementations/GoogleSheetsWordService'
+import { createWordService } from '../../services/wordServiceFactory'
 
 export async function GET(request: NextRequest) {
   try {
