@@ -6,10 +6,3 @@ export interface WordData {
   level: string;
   lastReviewed: string;
 }
-
-// Word service interface for dependency inversion
-export interface WordService {
-  getAllWords(): Promise<WordData[]>;
-  getWordsByLevel(level: string): Promise<WordData[]>;
-  getWordById(id: string): Promise<WordData | null>;
-}

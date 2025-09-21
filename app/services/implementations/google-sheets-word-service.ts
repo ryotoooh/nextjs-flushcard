@@ -1,8 +1,9 @@
 import { google } from 'googleapis';
-import { WordData, WordService } from '../../types/word';
+import { WordData } from '../../types/word';
+import { WordService } from '../word-service';
 
 // Google Sheets implementation of WordService
-export class GoogleSheetsWordService implements WordService {
+export class GoogleSheetsWordService implements WordService<WordData> {
   private sheets: any;
   private spreadsheetId: string;
   private range: string;

@@ -1,9 +1,10 @@
-import { WordData, WordService } from '../../types/word';
+import { WordData } from '../../types/word';
+import { WordService } from '../word-service';
 import fs from 'fs/promises';
 import path from 'path';
 
 // JSON file implementation of WordService
-export class JsonWordService implements WordService {
+export class JsonWordService implements WordService<WordData> {
   private dataPath: string;
 
   constructor(dataPath: string = './data/words.json') {

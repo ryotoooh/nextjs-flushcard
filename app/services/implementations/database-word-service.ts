@@ -1,7 +1,8 @@
-import { WordData, WordService } from '../../types/word';
+import { WordData } from '../../types/word';
+import { WordService } from '../word-service';
 
 // Database implementation of WordService (example with Prisma)
-export class DatabaseWordService implements WordService {
+export class DatabaseWordService implements WordService<WordData> {
   // This would be injected via constructor in a real implementation
   // private prisma: PrismaClient;
 
