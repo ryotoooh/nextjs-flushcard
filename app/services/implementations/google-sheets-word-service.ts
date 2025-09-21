@@ -15,8 +15,14 @@ export class GoogleSheetsWordService implements WordService<WordData> {
   }
 
   private initializeSheetsClient() {
-    // Prioritize service account authentication, use API key authentication if not available
-    if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+    // Prioritize API key authentication for Vercel compatibility
+    if (process.env.GOOGLE_SHEETS_API_KEY) {
+      return google.sheets({ 
+        version: 'v4', 
+        auth: process.env.GOOGLE_SHEETS_API_KEY 
+      });
+    } else if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+      // Service account authentication as fallback
       const auth = new google.auth.GoogleAuth({
         credentials: {
           client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -25,11 +31,6 @@ export class GoogleSheetsWordService implements WordService<WordData> {
         scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
       });
       return google.sheets({ version: 'v4', auth });
-    } else if (process.env.GOOGLE_SHEETS_API_KEY) {
-      return google.sheets({ 
-        version: 'v4', 
-        auth: process.env.GOOGLE_SHEETS_API_KEY 
-      });
     } else {
       throw new Error('Google Sheets authentication is not configured');
     }
