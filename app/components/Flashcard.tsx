@@ -5,10 +5,13 @@ interface FlashcardProps {
   currentIndex: number;
   showAnswer: boolean;
   currentWord: WordData | null;
+  isShuffled: boolean;
   onNext: () => void;
   onPrev: () => void;
   onToggleAnswer: () => void;
   onRefresh: () => void;
+  onShuffle: () => void;
+  onReset: () => void;
 }
 
 export default function Flashcard({
@@ -16,10 +19,13 @@ export default function Flashcard({
   currentIndex,
   showAnswer,
   currentWord,
+  isShuffled,
   onNext,
   onPrev,
   onToggleAnswer,
   onRefresh,
+  onShuffle,
+  onReset,
 }: FlashcardProps) {
   if (!currentWord) {
     return null;
@@ -41,6 +47,11 @@ export default function Flashcard({
               <span className="bg-black text-white text-xs font-medium px-3 py-1 rounded-full">
                 {currentWord.level}
               </span>
+              {isShuffled && (
+                <span className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                  Shuffled
+                </span>
+              )}
             </div>
 
             <h2 className="text-3xl font-light text-black mb-8 tracking-wide">
@@ -94,7 +105,25 @@ export default function Flashcard({
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="text-center space-y-4">
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={onShuffle}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            >
+              Shuffle Cards
+            </button>
+            
+            {isShuffled && (
+              <button
+                onClick={onReset}
+                className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+              >
+                Reset Order
+              </button>
+            )}
+          </div>
+          
           <button
             onClick={onRefresh}
             className="text-gray-600 hover:text-black font-light py-2 px-4 transition-colors"
