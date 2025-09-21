@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' next dev --turbopack",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' next build --turbopack",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' next start",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
